@@ -14,18 +14,9 @@ export default class CreateOrders1594653511883 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
-            type: 'varchar',
-          },
-          {
-            name: 'price',
-            type: 'decimal',
-            precision: 12,
-            scale: 2,
-          },
-          {
-            name: 'quantity',
-            type: 'integer',
+            name: 'customer_id',
+            type: 'uuid',
+            isNullable: true,
           },
           {
             name: 'created_at',
@@ -36,6 +27,16 @@ export default class CreateOrders1594653511883 implements MigrationInterface {
             name: 'updated_at',
             type: 'timestamp',
             default: 'now()',
+          },
+        ],
+        foreignKeys: [
+          {
+            name: 'OrderCustomerFK',
+            columnNames: ['customer_id'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'customers',
+            onDelete: 'SET NULL',
+            onUpdate: 'CASCADE',
           },
         ],
       }),
