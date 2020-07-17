@@ -19,7 +19,7 @@ class CreateProductService {
   ) {}
 
   public async execute({ name, price, quantity }: IRequest): Promise<Product> {
-    const findProductsByName = this.productsRepository.findByName(name);
+    const findProductsByName = await this.productsRepository.findByName(name);
 
     if (findProductsByName) {
       throw new AppError('Existing product with the same name');
